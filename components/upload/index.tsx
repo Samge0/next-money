@@ -103,7 +103,7 @@ const FormUpload = (props: FormUploadProps) => {
           fileType: file.type,
         });
         if (res.error || !res?.data.putUrl || !res?.data.url) {
-          toast.error(res.error || "获取上传信息失败，请稍候重试");
+          toast.error(res.error || "Failed to get upload information. Please try again later.");
           return;
         }
         const formData = new FormData();
@@ -129,7 +129,7 @@ const FormUpload = (props: FormUploadProps) => {
         onChange?.([...value, newValue]);
       } catch (error) {
         console.log("error->", error);
-        toast.error(error + "" || "上传失败！请稍候重试");
+        toast.error(error + "" || "Upload failed! Please try again later.");
       } finally {
         setUploadLoading(false);
       }
@@ -196,9 +196,9 @@ const FormUpload = (props: FormUploadProps) => {
             maxFiles={maxFiles}
             onDropRejected={() => {
               const maxFilesTooltip = maxSize
-                ? `或者文件大小（最大${formatSize(maxSize)}）`
+                ? ` or file size (max ${formatSize(maxSize)})`
                 : "";
-              toast.error(`请检查格式${maxFilesTooltip}`);
+              toast.error(`Please check the format${maxFilesTooltip}`);
             }}
             accept={accept}
             onFileChange={handleFileChange}
